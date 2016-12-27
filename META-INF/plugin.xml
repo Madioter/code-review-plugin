@@ -1,0 +1,63 @@
+<idea-plugin version="2">
+    <id>codeReview</id>
+    <name>Code Review for Local</name>
+    <version>0.1</version>
+  <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+
+  <description><![CDATA[
+      Local Code Review tools.<br>
+      <em>You can select code and use menu CodeReviewAction to mark a code review point, then window tools can insert a item to the list.
+      You can export to excel type and import from others file.
+      The tool no need to connect network</em>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      NULL<br>
+      <em>First version</em>
+    ]]>
+  </change-notes>
+
+  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+  <idea-version since-build="131"/>
+
+  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <application-components>
+    <!-- Add your application components here -->
+  </application-components>
+
+  <project-components>
+    <!-- Add your project components here -->
+  </project-components>
+
+    <actions>
+        <action id="CodeReviewAction" class="com.madiot.codereview.action.CodeReviewAction" text="CodeReviewAction"
+                description="code review">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable instance="com.madiot.codereview.configuration.CodeReviewConfigurable"
+                                 id="com.madiot.codereview.configuration.CodeReviewConfigurable" displayName="Code Review"/>
+        <applicationService serviceInterface="com.madiot.codereview.configuration.CodeReviewSettings"
+                            serviceImplementation="com.madiot.codereview.configuration.CodeReviewSettings"/>
+        <projectService serviceInterface="com.madiot.codereview.storage.XmlStorage"
+                        serviceImplementation="com.madiot.codereview.storage.XmlStorage"/>
+        <!--<projectService serviceInterface="com.crucible.codereview.connection.CrucibleManager"
+                        serviceImplementation="com.crucible.codereview.connection.CrucibleManager" />-->
+
+        <!-- 底部工具框 -->
+        <toolWindow id="Code Review" icon="/images/paw_orange.png" canCloseContents="true" anchor="bottom" factoryClass="com.madiot.codereview.ui.toolwindow.CodeReviewToolWindowFactory"/>
+
+    </extensions>
+
+</idea-plugin>

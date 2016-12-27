@@ -1,0 +1,6 @@
+<application>
+    <component name="CodeReviewSettings">
+        <option name="SERVER_URL" value="http://localhost:8082/mode" />
+        <option name="USERNAME" value="user" />
+    </component>
+</application>
